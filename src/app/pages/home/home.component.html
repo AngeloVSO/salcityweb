@@ -1,0 +1,19 @@
+<section class="container" *ngIf="cards$ | async as cards; else erroRequest">
+  <div>
+    <input
+      type="text"
+      (keyup)="filterByCardName($event)"
+      placeholder="Pesquise pelo nome da carta..."
+    />
+  </div>
+  <div class="card" *ngFor="let card of cards | filterByName : filter">
+    <p>{{ card.name | uppercase }}</p>
+    <a href="{{ card.imageUrl }}" target="_blank"> Link da imagem</a>
+  </div>
+</section>
+<ng-template #erroRequest>
+  <h1>
+    Não foi possível conectar a base de dados. Tente novamente ou contate o
+    suporte.
+  </h1>
+</ng-template>
