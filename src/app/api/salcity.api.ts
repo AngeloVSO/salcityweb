@@ -33,9 +33,9 @@ export class SalcityApiService {
   }
 
   addCard(body: { name: string; imageUrl: string }) {
-    const token =
-      '.eyJpZCI6ImFkZTVjYjRhLWI5YzItNDFjYS04MzM4LWEwMGM4NGFjOGJmZSIsInJvbGUiOiJzQUxkbUluY2l0eSIsImlhdCI6MTY4MTg3MDUzMX0.HXglca_3d_PfKT1XDH9eOUqekZ1uhRzsg1NSiB3pwD0';
-    const header = new HttpHeaders().set('Authorization', `bearer ${token}`);
+    const token = localStorage.getItem('salcity_token');
+
+    const header = new HttpHeaders().set('authorization', `bearer ${token}`);
 
     return this.http
       .post('https://salcity.vercel.app/cards', body, {

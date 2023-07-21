@@ -42,7 +42,9 @@ export class LoginComponent {
   }
 
   login() {
-    this.api.login(this.formulario.value).subscribe((res) => {
+    this.api.login(this.formulario.value).subscribe((res: any) => {
+      localStorage.setItem('salcity_token', JSON.stringify(res.body?.token));
+
       this.router.navigate(['../admin']);
     });
   }
